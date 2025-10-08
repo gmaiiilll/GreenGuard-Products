@@ -26,12 +26,13 @@ function App() {
   }, [searchTerm, selectedCategory, selectedApplication, products])
 
   const fetchData = async () => {
+    const API_URL = import.meta.env.VITE_API_URL || 'https://greenguard-products.onrender.com'
     try {
       const [productsRes, categoriesRes, applicationsRes, statsRes] = await Promise.all([
-        fetch('/api/products'),
-        fetch('/api/categories'),
-        fetch('/api/applications'),
-        fetch('/api/stats')
+        fetch(`${API_URL}/api/products`),
+        fetch(`${API_URL}/api/categories`),
+        fetch(`${API_URL}/api/applications`),
+        fetch(`${API_URL}/api/stats`)
       ])
 
       const productsData = await productsRes.json()
